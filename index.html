@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Earth Network — one global anonymous live chat." />
+  <title>Earth Network — Global Live Chat</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">◉</div>
+        <div>
+          <h1>Earth Network</h1>
+          <p>One world. One chat.</p>
+        </div>
+      </div>
+
+      <div class="status-group">
+        <div class="live-pill"><span class="live-dot"></span> LIVE</div>
+        <div class="online-pill"><span id="onlineCount">0</span> online</div>
+      </div>
+    </header>
+
+    <main class="chat-card">
+      <div class="chat-toolbar">
+        <div>
+          <span class="eyebrow">GLOBAL CHANNEL</span>
+          <h2>Everyone is here</h2>
+        </div>
+        <button id="nameButton" class="name-button" type="button" title="Change your temporary username">
+          <span id="currentUsername">Guest_----</span>
+          <span aria-hidden="true">↗</span>
+        </button>
+      </div>
+
+      <section id="chatMessages" class="messages" aria-live="polite" aria-label="Global chat messages">
+        <div id="loadingState" class="system-state">Connecting to Earth Network…</div>
+      </section>
+
+      <div id="errorBar" class="error-bar" role="alert" hidden></div>
+
+      <form id="messageForm" class="composer" autocomplete="off">
+        <label class="sr-only" for="messageInput">Type a message</label>
+        <input
+          id="messageInput"
+          name="message"
+          type="text"
+          maxlength="280"
+          placeholder="Type a message..."
+          aria-label="Type a message"
+          disabled
+        />
+        <button id="sendButton" type="submit" disabled>Send</button>
+      </form>
+      <div class="composer-meta"><span id="charCount">0</span>/280</div>
+    </main>
+
+    <footer class="footer">Anonymous by design · Please keep the global chat respectful.</footer>
+  </div>
+
+  <div id="nameModal" class="modal-backdrop" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="nameTitle">
+      <button id="closeModal" class="modal-close" type="button" aria-label="Close">×</button>
+      <span class="eyebrow">YOUR DISPLAY NAME</span>
+      <h2 id="nameTitle">Choose a temporary name</h2>
+      <p>This name is only your chat display name. No account or personal information is required.</p>
+      <label for="nameInput">Username</label>
+      <input id="nameInput" type="text" maxlength="24" autocomplete="off" />
+      <div class="modal-actions">
+        <button id="randomName" class="secondary-button" type="button">Random name</button>
+        <button id="saveName" class="primary-button" type="button">Save name</button>
+      </div>
+      <div id="nameError" class="form-error" hidden></div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
